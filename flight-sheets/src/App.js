@@ -1,11 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import Flight from './Components/Flight'
+import flightService from './services/flights'
 
-const App = (props) => {
+const App = () => {
 
-  const [flights, setFlights] = useState(props.flights)
+  const [flights, setFlights] = useState([])
   const [newFlight, setNewFlight] = useState('0')
   const [showAll, setShowAll] = useState(true)
+
+  const hook = () => {
+    console.log('effect')
+    flightService.getAll()
+    .then(initialFlights => {
+      setFlights(initialFlights)
+    })
+  }
+  useEffect(hook, [])
+  
+  console.log('rendered', flights.length, 'flights')
 
   const addFlight = (event) => {
     event.preventDefault()
@@ -15,9 +28,13 @@ const App = (props) => {
       mass: 35,
       altitude: newFlight
     }
-    console.log(event.target)
-    setFlights(flights.concat(flightObj))
-    setNewFlight('')
+
+    flightService.create(flightObj)
+    .then(returnedFlight => {
+      setFlights(flights.concat(returnedFlight))
+      setNewFlight('')
+    })
+
   }
 
   const flightsToShow = showAll ? flights : flights.filter(flight => flight.altitude > 110 && flight.altitude < 135)
