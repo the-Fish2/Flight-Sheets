@@ -1,0 +1,27 @@
+p {
+    border: 1px solid;
+    padding: 5px;
+    margin: 0;
+    /* width: 300px;
+} */
+}
+
+.pbox2 {
+    border: 1px solid;
+    height: 200px;
+    /* width: 300px; */
+}
+
+.pbox {
+    border: 1px solid;
+    height: 150px;
+    /* width: 300px; */
+}
+
+.circleOpt {
+    margin: 0;
+}
+
+.threeCol {
+    column-count: 2;
+}
