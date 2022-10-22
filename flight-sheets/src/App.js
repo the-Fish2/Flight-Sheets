@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import Flight from './Components/Flight'
 import flightService from './services/flights'
+import Form from './Components/Form'
 
 const App = () => {
 
@@ -59,12 +59,17 @@ const App = () => {
         )}
       </ul>
 
+      {/* <Form 
+        onSubmit={() => console.log("hi")}
+      /> */}
+
       <form onSubmit={addFlight}>
-        <input 
+        
+        Temperature <input 
           value={newFlight}
           onChange={handleChange}
         />
-        <button type="submit"> upload new </button>
+        <button type="submit"> Submit </button>
       </form>
 
     </div>
